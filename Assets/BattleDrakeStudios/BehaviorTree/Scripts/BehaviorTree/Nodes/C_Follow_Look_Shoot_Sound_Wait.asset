@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e5adff7d3daf741907c595091f3599, type: 3}
+  m_Name: C_Follow_Look_Shoot_Sound_Wait
+  m_EditorClassIdentifier: 
+  _behaviorNodes:
+  - {fileID: 11400000, guid: a2d5ea5048b81ef4a9acd0d60739e9db, type: 2}
+  - {fileID: 11400000, guid: 39ee0da14e45a5b46936ea584b8e362f, type: 2}
+  - {fileID: 11400000, guid: 71f1da9face005349bded0bc5be7e937, type: 2}
+  - {fileID: 11400000, guid: c0ec6b1fec24d0e43921505dc0cffd09, type: 2}
+  - {fileID: 11400000, guid: 5457a9f0abdc29049b52214bf6bc3a6f, type: 2}
