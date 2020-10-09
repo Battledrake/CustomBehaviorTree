@@ -20,7 +20,9 @@ namespace BattleDrakeStudios.BehaviorTree {
             _navAgent = behaviorTree.NavAgent;
             _owner = behaviorTree.Owner;
 
-            _followTarget = behaviorTree.BTBoard._followTarget;
+            if(behaviorTree.BTBoard.TryGetValue("FollowTarget", out object obj)) {
+                _followTarget = (Transform)obj;
+            }
         }
 
         public override NodeState Evaluate() {
@@ -36,7 +38,7 @@ namespace BattleDrakeStudios.BehaviorTree {
                         _nodeState = NodeState.Success;
                     }
                 } else {
-                    _behaviorTree.BTBoard._followTarget = null;
+                    _behaviorTree.BTBoard["FollowTarget"] = null;
                     _followTarget = null;
                     _navAgent.isStopped = true;
                     _nodeState = NodeState.Failed;

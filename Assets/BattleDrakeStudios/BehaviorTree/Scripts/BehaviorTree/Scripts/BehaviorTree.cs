@@ -15,10 +15,10 @@ namespace BattleDrakeStudios.BehaviorTree {
         [SerializeField] private BehaviorNode _topNode = null;
 
         public NavMeshAgent NavAgent => _navAgent;
-        public BTBlackboard BTBoard => _btBoard;
+        public Dictionary<string, object> BTBoard { get => _btBoard; set => _btBoard = value; }
         public GameObject Owner => _owner;
 
-        private BTBlackboard _btBoard;
+        private Dictionary<string, object> _btBoard;
         private GameObject _owner;
         private NavMeshAgent _navAgent = null;
         private BTState _currentState;
@@ -28,7 +28,7 @@ namespace BattleDrakeStudios.BehaviorTree {
             _owner = this.gameObject;
             _navAgent = this.GetComponent<NavMeshAgent>();
             _currentState = BTState.Stopped;
-            _btBoard = new BTBlackboard();
+            _btBoard = new Dictionary<string, object>();
         }
 
         public void BeginTree() {

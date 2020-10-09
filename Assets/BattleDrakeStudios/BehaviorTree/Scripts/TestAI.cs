@@ -18,7 +18,7 @@ namespace BattleDrakeStudios.BehaviorTree {
 
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
-                _behaviorTree.BTBoard._followTarget = other.transform;
+                _behaviorTree.BTBoard["FollowTarget"] = other.transform;
             }
         }
     }

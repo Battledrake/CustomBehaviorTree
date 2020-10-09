@@ -11,7 +11,9 @@ namespace BattleDrakeStudios.BehaviorTree {
         public override void Initialize(BehaviorTree behaviorTree) {
             base.Initialize(behaviorTree);
 
-            _followTarget = behaviorTree.BTBoard._followTarget;
+            if(behaviorTree.BTBoard.TryGetValue("FollowTarget", out object obj)) {
+                _followTarget = (Transform)obj;
+            }
             _owner = behaviorTree.Owner;
         }
 

@@ -8,31 +8,35 @@ namespace BattleDrakeStudios.BehaviorTree {
     public class MoveToWaypoint : BehaviorNode {
 
         private NavMeshAgent _navAgent;
-        private BTBlackboard _btBoard;
         private Transform _destination;
         private GameObject _owner;
 
         public override void Initialize(BehaviorTree behaviorTree) {
             base.Initialize(behaviorTree);
 
-            _btBoard = behaviorTree.BTBoard;
             _navAgent = behaviorTree.NavAgent;
             _owner = behaviorTree.Owner;
             _destination = null;
 
-            if (_btBoard._wayPoints.Length > 0) {
-                Transform randomDest = _btBoard._wayPoints[Random.Range(0, _btBoard._wayPoints.Length)];
+            if (behaviorTree.BTBoard.TryGetValue("Waypoints", out object obj)) {
+                Transform[] wayPoints = (Transform[])obj;
+                if (wayPoints.Length > 0) {
+                    Transform randomDest = wayPoints[Random.Range(0, wayPoints.Length)];
 
-                float distance = Vector3.Distance(_owner.transform.position, randomDest.position);
+                    float distance = Vector3.Distance(_owner.transform.position, randomDest.position);
 
-                while (distance <= 5) {
-                    randomDest = _btBoard._wayPoints[Random.Range(0, _btBoard._wayPoints.Length)];
-                    distance = Vector3.Distance(_owner.transform.position, randomDest.position);
+                    while (distance <= 5) {
+                        randomDest = wayPoints[Random.Range(0, wayPoints.Length)];
+                        distance = Vector3.Distance(_owner.transform.position, randomDest.position);
+                    }
+
+                    _destination = randomDest;
+                    _navAgent.SetDestination(_destination.position);
+                    _navAgent.isStopped = false;
+
+                } else {
+                    _nodeState = NodeState.Failed;
                 }
-
-                _destination = randomDest;
-                _navAgent.SetDestination(_destination.position);
-                _navAgent.isStopped = false;
             } else {
                 _nodeState = NodeState.Failed;
             }
