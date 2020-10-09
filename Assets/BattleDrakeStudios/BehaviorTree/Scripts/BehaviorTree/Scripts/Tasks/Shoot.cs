@@ -9,6 +9,7 @@ namespace BattleDrakeStudios.BehaviorTree {
 
         public override void Initialize(BehaviorTree behaviorTree) {
             base.Initialize(behaviorTree);
+            _owner = null;
 
             _owner = behaviorTree.Owner;
         }

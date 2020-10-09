@@ -13,10 +13,12 @@ namespace BattleDrakeStudios.BehaviorTree {
 
         public override void Initialize(BehaviorTree behaviorTree) {
             base.Initialize(behaviorTree);
+            _destination = null;
+            _navAgent = null;
+            _owner = null;
 
             _navAgent = behaviorTree.NavAgent;
             _owner = behaviorTree.Owner;
-            _destination = null;
 
             if (behaviorTree.BTBoard.TryGetValue("Waypoints", out object obj)) {
                 Transform[] wayPoints = (Transform[])obj;

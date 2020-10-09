@@ -16,6 +16,9 @@ namespace BattleDrakeStudios.BehaviorTree {
 
         public override void Initialize(BehaviorTree behaviorTree) {
             base.Initialize(behaviorTree);
+            _followTarget = null;
+            _navAgent = null;
+            _owner = null;
 
             _navAgent = behaviorTree.NavAgent;
             _owner = behaviorTree.Owner;

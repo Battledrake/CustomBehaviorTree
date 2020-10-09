@@ -10,6 +10,7 @@ namespace BattleDrakeStudios.BehaviorTree {
 
         public override void Initialize(BehaviorTree behaviorTree) {
             base.Initialize(behaviorTree);
+            _wayPoints = null;
         }
 
         public override NodeState Evaluate() {
