@@ -6,25 +6,10 @@ namespace BattleDrakeStudios.BehaviorTree {
     [CreateAssetMenu(fileName = "RunWhileTargetFalse", menuName = "BehaviorTree/Decorator/RunWhileTargetFalse")]
     public class RunWhileTargetFalse : DecoratorNode {
 
-        private Transform _followTarget;
-
-        public override void Initialize(BehaviorTree behaviorTree) {
-            base.Initialize(behaviorTree);
-            _followTarget = null;
-
-            if (behaviorTree.BTBoard.TryGetValue("FollowTarget", out object obj)) {
-                _followTarget = (Transform)obj;
-            }
-            if (_followTarget == null) {
-                _childNode.Initialize(behaviorTree);
-            }
-        }
-
         public override NodeState Evaluate() {
-            if (_behaviorTree.BTBoard.TryGetValue("FollowTarget", out object obj)) {
-                _followTarget = (Transform)obj;
-            }
-            if (_followTarget == null) {
+            Transform followTarget = _behaviorTree.BTBoard.GetValue<Transform>("FollowTarget");
+
+            if (followTarget == null) {
                 _nodeState = _childNode.Evaluate();
             } else {
                 _nodeState = NodeState.Failed;

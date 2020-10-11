@@ -6,22 +6,15 @@ namespace BattleDrakeStudios.BehaviorTree {
     [CreateAssetMenu(fileName = "FindWaypoint", menuName = "BehaviorTree/Task/FindWaypoint")]
     public class FindWaypoints : BehaviorNode {
 
-        private Transform[] _wayPoints;
-
-        public override void Initialize(BehaviorTree behaviorTree) {
-            base.Initialize(behaviorTree);
-            _wayPoints = null;
-        }
-
         public override NodeState Evaluate() {
 
             Transform wayPointHolder = GameObject.Find("WayPointHolder").transform;
             if (wayPointHolder != null) {
-                _wayPoints = new Transform[wayPointHolder.childCount];
+                Transform[] wayPoints = new Transform[wayPointHolder.childCount];
                 for (int i = 0; i < wayPointHolder.childCount; i++) {
-                    _wayPoints[i] = wayPointHolder.GetChild(i);
+                    wayPoints[i] = wayPointHolder.GetChild(i);
                 }
-                _behaviorTree.BTBoard["Waypoints"] = _wayPoints;
+                _behaviorTree.BTBoard.SetValue("Waypoints", wayPoints);
                 _nodeState = NodeState.Success;
 
             } else {
